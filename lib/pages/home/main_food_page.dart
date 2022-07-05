@@ -1,4 +1,4 @@
-import 'package:e_commerce/home/food_page_body.dart';
+import 'package:e_commerce/pages/home/food_page_body.dart';
 import 'package:e_commerce/utils/colors.dart';
 import 'package:e_commerce/utils/dimensions.dart';
 import 'package:e_commerce/widgets/big_text.dart';
@@ -71,7 +71,11 @@ class _MainFoodPageState extends State<MainFoodPage> {
             ),
           ),
           // showing the body
-          FoodPageBody(),
+          Expanded(
+            child: SingleChildScrollView(
+              child: FoodPageBody(),
+            ),
+          ),
         ],
       ),
     );
