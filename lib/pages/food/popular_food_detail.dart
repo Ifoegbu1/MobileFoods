@@ -1,3 +1,7 @@
+import 'package:e_commerce/controllers/popular_product_controller.dart';
+import 'package:e_commerce/pages/home/food_page_body.dart';
+import 'package:e_commerce/pages/home/main_food_page.dart';
+import 'package:e_commerce/utils/app_constants.dart';
 import 'package:e_commerce/utils/colors.dart';
 import 'package:e_commerce/utils/dimensions.dart';
 import 'package:e_commerce/widgets/app_column.dart';
@@ -5,12 +9,18 @@ import 'package:e_commerce/widgets/app_icon.dart';
 import 'package:e_commerce/widgets/big_text.dart';
 import 'package:e_commerce/widgets/expandable_text_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class PopularFoodDetail extends StatelessWidget {
-  const PopularFoodDetail({Key? key}) : super(key: key);
+ final int pageId;
+  const PopularFoodDetail({Key? key, required this.pageId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var product =
+        Get.find<PopularProductController>().popularProductList[pageId];
+    // print("page is id " + pageId.toString());
+    // print("product name is " + product.name.toString());
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -25,14 +35,14 @@ class PopularFoodDetail extends StatelessWidget {
               decoration: BoxDecoration(
                 image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: AssetImage(
-                    "assets/image/food0.png",
-                  ),
+                  image: NetworkImage(AppConstants.BASE_URL +
+                      AppConstants.UPLOAD_URL +
+                      product.img!),
                 ),
               ),
             ),
           ),
-          //icon widget
+          //topBar icon widget
           Positioned(
             top: Dimensions.height45,
             left: Dimensions.width20,
@@ -40,8 +50,11 @@ class PopularFoodDetail extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AppIcon(
-                  icon: Icons.arrow_back_ios,
+                GestureDetector(
+                  onTap: () {
+                    Get.to(() => MainFoodPage());
+                  },
+                  child: AppIcon(icon: Icons.arrow_back_ios),
                 ),
                 AppIcon(
                   icon: Icons.shopping_cart_outlined,
@@ -71,20 +84,17 @@ class PopularFoodDetail extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  AppColumn(text: "Chinese Side"),
+                  AppColumn(text: product.name!),
                   SizedBox(height: Dimensions.height20),
                   BigText(text: "Introduce"),
                   SizedBox(height: Dimensions.height20),
- 
+
                   //expandable text widget
                   Expanded(
                     child: SingleChildScrollView(
-                      child: ExpandableTextWidget(
-                        text:
-                            "The preferences for seasoning and cooking techniques of Chinese provinces depend on differences in historical background and ethnic groups. Geographic features including mountains, rivers, forests, and deserts also have a strong effect on the local available ingredients, considering that the climate of China varies from tropical in the south to subarctic in the northeast. Imperial royal and noble preference also plays a role in the change of Chinese cuisine. Because of imperial expansion and trading, ingredients and cooking techniques from other cultures have been integrated into Chinese cuisines over time.There are numerous regional, religious, and ethnic styles of Chinese cuisine found within China and abroad. The most praised Four Great Traditions in Chinese cuisine are Chuan, Lu, Yue, and Huaiyang. It is an adaptation of the Chinese sauces, seasoning and certain cooking techniques like steaming and stir-frying. A lot of street food vendors and restaurants serve what is known as the Hakka cuisine with prominent dishes like Manchurian, American Chop Suey, Sweet and Sour, Chow Mein and others. These have similar textures but different flavours due to the use of certain Indian ingredients",
-                      ),
+                      child: ExpandableTextWidget(text: product.description!),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -147,7 +157,7 @@ class PopularFoodDetail extends StatelessWidget {
                 right: Dimensions.width20,
               ),
               child: BigText(
-                text: "\$10 | Add to cart",
+                text: "\$ ${product.price!} | Add to cart",
                 color: Colors.white,
               ),
               decoration: BoxDecoration(
