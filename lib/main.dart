@@ -1,5 +1,7 @@
+import 'package:e_commerce/controllers/cart_controller.dart';
 import 'package:e_commerce/controllers/popular_product_controller.dart';
 import 'package:e_commerce/controllers/recommeded_product_controller.dart';
+import 'package:e_commerce/pages/cart/cart_page.dart';
 import 'package:e_commerce/pages/food/popular_food_detail.dart';
 import 'package:e_commerce/pages/food/recommended_food_detail.dart';
 import 'package:e_commerce/routes/route_helper.dart';
@@ -23,6 +25,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.find<PopularProductController>().getPopularProductList();
     Get.find<RecommendedProductController>().getRecommendedProductList();
+    Get.find<CartController>();
+
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
