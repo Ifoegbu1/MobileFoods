@@ -1,6 +1,6 @@
 import 'package:e_commerce/controllers/cart_controller.dart';
 import 'package:e_commerce/controllers/popular_product_controller.dart';
-import 'package:e_commerce/pages/cart/cart_page.dart';
+import 'package:e_commerce/routes/route_helper.dart';
 import 'package:e_commerce/utils/app_constants.dart';
 import 'package:e_commerce/utils/colors.dart';
 import 'package:e_commerce/utils/dimensions.dart';
@@ -13,7 +13,9 @@ import 'package:get/get.dart';
 
 class PopularFoodDetail extends StatelessWidget {
   final int pageId;
-  const PopularFoodDetail({Key? key, required this.pageId}) : super(key: key);
+  final String page;
+  const PopularFoodDetail({Key? key, required this.pageId, required this.page})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -54,48 +56,59 @@ class PopularFoodDetail extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () {
-                    Navigator.of(context).pop();
+                    if (page == "cartPage") {
+                      Get.toNamed(RouteHelper.getCartPage());
+                    } else {
+                      Get.toNamed(RouteHelper.getInitial());
+                    }
                   },
                   child: AppIcon(icon: Icons.arrow_back_ios),
                 ),
                 GetBuilder<PopularProductController>(
                   builder: (controller) {
-                    return Stack(
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            Get.to(() => CartPage());
-                          },
-                          child: AppIcon(
+                    return GestureDetector(
+                      onTap: () {
+                        if (controller.totalItems >= 0) {
+                          Get.toNamed(RouteHelper.getCartPage());
+                        } else {
+                          // Get.snackbar(
+                          //   "Empty cart",
+                          //   "Add items to the cart first",
+                          //   backgroundColor: AppColors.mainColor,
+                          //   colorText: Colors.white,
+                          // );
+                        }
+                      },
+                      child: Stack(
+                        children: [
+                          AppIcon(
                             icon: Icons.shopping_cart_outlined,
                           ),
-                        ),
-                        Get.find<PopularProductController>().totalItems >= 1
-                            ? Positioned(
-                                right: 0,
-                                top: 0,
-                                child: AppIcon(
-                                  icon: Icons.circle,
-                                  size: Dimensions.iconSize20,
-                                  iconColor: Colors.transparent,
-                                  backgroundColor: AppColors.mainColor,
-                                ),
-                              )
-                            : Container(),
-                        Get.find<PopularProductController>().totalItems >= 1
-                            ? Positioned(
-                                right: 3,
-                                top: 3,
-                                child: BigText(
-                                  text: Get.find<PopularProductController>()
-                                      .totalItems
-                                      .toString(),
-                                  size: 12,
-                                  color: Colors.white,
-                                ),
-                              )
-                            : Container()
-                      ],
+                          controller.totalItems >= 1
+                              ? Positioned(
+                                  right: 0,
+                                  top: 0,
+                                  child: AppIcon(
+                                    icon: Icons.circle,
+                                    size: Dimensions.iconSize20,
+                                    iconColor: Colors.transparent,
+                                    backgroundColor: AppColors.mainColor,
+                                  ),
+                                )
+                              : Container(),
+                          controller.totalItems >= 1
+                              ? Positioned(
+                                  right: 3,
+                                  top: 3,
+                                  child: BigText(
+                                    text: controller.totalItems.toString(),
+                                    size: Dimensions.height10 * 1.2,
+                                    color: Colors.white,
+                                  ),
+                                )
+                              : Container()
+                        ],
+                      ),
                     );
                   },
                 )
@@ -214,7 +227,7 @@ class PopularFoodDetail extends StatelessWidget {
                       right: Dimensions.width20,
                     ),
                     child: BigText(
-                      text: "\$ ${product.price!} | Add to cart",
+                      text: "\₦ ${product.price!} | Add to cart",
                       color: Colors.white,
                     ),
                     decoration: BoxDecoration(
