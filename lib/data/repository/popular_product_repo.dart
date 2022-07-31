@@ -12,4 +12,3 @@ class PopularProductRepo extends GetxService {
     return await apiClient.getData(AppConstants.POPULAR_PRODUCT_URI);
   }
 }
- 

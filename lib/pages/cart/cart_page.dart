@@ -2,7 +2,6 @@ import 'package:e_commerce/base/no_data_page.dart';
 import 'package:e_commerce/controllers/cart_controller.dart';
 import 'package:e_commerce/controllers/popular_product_controller.dart';
 import 'package:e_commerce/controllers/recommeded_product_controller.dart';
-import 'package:e_commerce/pages/home/main_food_page.dart';
 import 'package:e_commerce/routes/route_helper.dart';
 import 'package:e_commerce/utils/app_constants.dart';
 import 'package:e_commerce/utils/colors.dart';
