@@ -1,4 +1,5 @@
 import 'package:e_commerce/base/no_data_page.dart';
+import 'package:e_commerce/controllers/auth_controller.dart';
 import 'package:e_commerce/controllers/cart_controller.dart';
 import 'package:e_commerce/controllers/popular_product_controller.dart';
 import 'package:e_commerce/controllers/recommeded_product_controller.dart';
@@ -299,9 +300,11 @@ class CartPage extends StatelessWidget {
                       //check-out container
                       GestureDetector(
                         onTap: () {
-                          // popularProductControl.addItem(product);
-                          // print("tapped");
-                          cartController.addToHistory();
+                          if (Get.find<AuthController>().userLoggedIn()) {
+                            cartController.addToHistory();
+                          } else {
+                            Get.toNamed(RouteHelper.getSignInPage());
+                          }
                         },
                         child: Container(
                           padding: EdgeInsets.only(

@@ -1,7 +1,9 @@
+import 'package:e_commerce/pages/account/account_page.dart';
+import 'package:e_commerce/pages/auth/sign_in_page.dart';
+import 'package:e_commerce/pages/auth/sign_up_page.dart';
 import 'package:e_commerce/pages/cart/cart_history.dart';
 import 'package:e_commerce/pages/home/main_food_page.dart';
 import 'package:e_commerce/utils/colors.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
@@ -19,13 +21,9 @@ class _HomePageState extends State<HomePage> {
 
   List pages = [
     MainFoodPage(),
-    Container(
-      child: Center(child: Text("Next page")),
-    ),
-  CartHistory(), 
-    Container(
-      child: Center(child: Text("Next next  next page")),
-    ),
+    Container(child: Center(child: Text("History page"))),
+    CartHistory(),
+    AccountPage(),
   ];
 
   void onTapNav(int index) {
