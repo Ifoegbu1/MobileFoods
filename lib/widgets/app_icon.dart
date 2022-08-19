@@ -1,5 +1,6 @@
 import 'package:e_commerce/utils/dimensions.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class AppIcon extends StatelessWidget {
   final IconData icon;
@@ -28,7 +29,7 @@ class AppIcon extends StatelessWidget {
       ),
       child: Icon(
         icon,
-        color: iconColor,
+        color: Get.isDarkMode ? Colors.black54 : iconColor,
         size: iconSize,
       ),
     );

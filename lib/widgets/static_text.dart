@@ -1,13 +1,12 @@
 import 'package:e_commerce/utils/dimensions.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
-class BigText extends StatelessWidget {
+class StaticText extends StatelessWidget {
   Color? color;
   final String text;
   double size;
   TextOverflow overFlow;
-  BigText({
+  StaticText({
     Key? key,
     this.color = const Color(0xFF332d2b),
     required this.text,
@@ -23,7 +22,7 @@ class BigText extends StatelessWidget {
       overflow: overFlow,
       style: TextStyle(
         fontFamily: 'Roboto',
-        color: Get.isDarkMode ? Colors.white : color,
+        color: color,
         fontWeight: FontWeight.w400,
         fontSize: size == 0 ? Dimensions.font20 : size,
       ),

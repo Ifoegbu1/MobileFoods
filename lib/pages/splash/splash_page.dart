@@ -47,7 +47,8 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor:
+          Get.isDarkMode ? context.theme.primaryColorDark : Colors.white,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

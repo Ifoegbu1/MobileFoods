@@ -2,7 +2,7 @@ class AppConstants {
   static const String APP_NAME = "DBFOOD";
   static const int APP_VERSION = 1;
 
-  static const String BASE_URL = "http://9ecb-51-195-254-186.ngrok.io";
+  static const String BASE_URL = "https://ifoegbu1-laravel.herokuapp.com";
 
   //products end-points
   static const String POPULAR_PRODUCT_URI = "/api/v1/products/popular";

@@ -4,6 +4,7 @@ import 'package:e_commerce/controllers/recommeded_product_controller.dart';
 import 'package:e_commerce/models/products_model.dart';
 import 'package:e_commerce/pages/food/popular_food_detail.dart';
 import 'package:e_commerce/routes/route_helper.dart';
+import 'package:e_commerce/ui/theme.dart';
 import 'package:e_commerce/utils/app_constants.dart';
 import 'package:e_commerce/utils/colors.dart';
 import 'package:e_commerce/utils/dimensions.dart';
@@ -92,7 +93,9 @@ class _FoodPageBodyState extends State<FoodPageBody> {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              BigText(text: "Recommended"),
+              BigText(
+                text: "Recommended",
+              ),
               SizedBox(width: Dimensions.width10),
               Container(
                 margin: const EdgeInsets.only(bottom: 3),
@@ -103,6 +106,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               ),
               SizedBox(width: Dimensions.width10),
               Container(
+                decoration: BoxDecoration(),
                 margin: const EdgeInsets.only(bottom: 2),
                 child: SmallText(text: "Food pairing"),
               )
@@ -121,7 +125,8 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
-                        Get.toNamed(RouteHelper.getRecommendedFood(index, "home"));
+                        Get.toNamed(
+                            RouteHelper.getRecommendedFood(index, "home"));
                       },
                       child: Container(
                         margin: EdgeInsets.only(
@@ -137,7 +142,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                               decoration: BoxDecoration(
                                 borderRadius:
                                     BorderRadius.circular(Dimensions.radius20),
-                                color: Colors.white38,
+                                // color: Colors.white38,
                                 image: DecorationImage(
                                   fit: BoxFit.cover,
                                   image: NetworkImage(AppConstants.BASE_URL +
@@ -159,7 +164,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                                     bottomRight:
                                         Radius.circular(Dimensions.radius20),
                                   ),
-                                  color: Colors.white,
+                                  // color: Colors.white,
                                 ),
                                 child: Padding(
                                   padding: EdgeInsets.only(
@@ -279,19 +284,27 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               ),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(Dimensions.radius20),
-                color: Colors.white,
                 boxShadow: [
                   BoxShadow(
-                    color: Color(0xFFe8e8e8),
+                    color: Get.isDarkMode ? Colors.black12 : Color(0xFFe8e8e8),
                     blurRadius: 5.0,
                     offset: Offset(0, 5),
                   ),
                   BoxShadow(
-                    color: Colors.white,
+                    color: Get.isDarkMode ? Colors.black26 : Colors.white,
+                    blurRadius: Get.isDarkMode ? 5.0 : 0,
                     offset: Offset(-5, 0),
                   ),
                   BoxShadow(
-                    color: Colors.white,
+                    color: Get.isDarkMode ? Colors.black26 : Colors.white,
+                    blurRadius: Get.isDarkMode ? 5.0 : 0.0,
+                    offset: Offset(12, 0),
+                  ),
+                  BoxShadow(
+                    color: Get.isDarkMode
+                        ? Color.fromARGB(255, 48, 48, 48)
+                        : Colors.white,
+                    // blurRadius: Get.isDarkMode ? 5.0 : 0,
                     offset: Offset(5, 0),
                   ),
                 ],

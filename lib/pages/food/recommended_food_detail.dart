@@ -10,6 +10,7 @@ import 'package:e_commerce/widgets/app_icon.dart';
 import 'package:e_commerce/widgets/big_text.dart';
 import 'package:e_commerce/widgets/expandable_text_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class RecommendedFoodDetail extends StatelessWidget {
@@ -26,7 +27,8 @@ class RecommendedFoodDetail extends StatelessWidget {
     Get.find<PopularProductController>()
         .initProduct(product, Get.find<CartController>());
     return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor:
+            Get.isDarkMode ? context.theme.primaryColorDark : Colors.white,
         body: CustomScrollView(
           slivers: [
             SliverAppBar(
@@ -106,7 +108,9 @@ class RecommendedFoodDetail extends StatelessWidget {
                   width: double.maxFinite,
                   padding: EdgeInsets.only(top: 5, bottom: 10),
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Get.isDarkMode
+                        ? Theme.of(context).primaryColorDark
+                        : Colors.white,
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(Dimensions.radius20),
                       topRight: Radius.circular(Dimensions.radius20),
@@ -195,7 +199,9 @@ class RecommendedFoodDetail extends StatelessWidget {
                       left: Dimensions.width20,
                       right: Dimensions.width20),
                   decoration: BoxDecoration(
-                    color: AppColors.buttonBackgroundColor,
+                    color: Get.isDarkMode
+                        ? Colors.black26
+                        : AppColors.buttonBackgroundColor,
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(Dimensions.radius20 * 2),
                       topRight: Radius.circular(Dimensions.radius20 * 2),
@@ -213,9 +219,12 @@ class RecommendedFoodDetail extends StatelessWidget {
                           right: Dimensions.width20,
                         ),
                         decoration: BoxDecoration(
-                            borderRadius:
-                                BorderRadius.circular(Dimensions.radius20),
-                            color: Colors.white),
+                          borderRadius:
+                              BorderRadius.circular(Dimensions.radius20),
+                          color: Get.isDarkMode
+                              ? context.theme.primaryColorDark
+                              : Colors.white,
+                        ),
                         child: Icon(
                           Icons.favorite,
                           color: AppColors.mainColor,

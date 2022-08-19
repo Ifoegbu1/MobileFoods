@@ -7,6 +7,7 @@ import 'package:e_commerce/utils/colors.dart';
 import 'package:e_commerce/utils/dimensions.dart';
 import 'package:e_commerce/widgets/app_text_field.dart';
 import 'package:e_commerce/widgets/big_text.dart';
+import 'package:e_commerce/widgets/static_text.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -80,7 +81,8 @@ class SignUpPage extends StatelessWidget {
     }
 
     return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor:
+            Get.isDarkMode ? context.theme.primaryColorDark : Colors.white,
         body: GetBuilder<AuthController>(builder: (_authController) {
           return !_authController.isLoading
               ? SingleChildScrollView(
@@ -93,7 +95,9 @@ class SignUpPage extends StatelessWidget {
                         height: Dimensions.screenHeight * 0.25,
                         child: Center(
                           child: CircleAvatar(
-                            backgroundColor: Colors.white,
+                            backgroundColor: Get.isDarkMode
+                                ? context.theme.primaryColorDark
+                                : Colors.white,
                             radius: Dimensions.radius20 * 4,
                             backgroundImage:
                                 AssetImage("assets/image/logo part 1.png"),
@@ -183,6 +187,9 @@ class SignUpPage extends StatelessWidget {
                             (index) => Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: CircleAvatar(
+                                    backgroundColor: Get.isDarkMode
+                                        ? context.theme.primaryColorDark
+                                        : Colors.white,
                                     radius: Dimensions.radius30,
                                     backgroundImage: AssetImage(
                                         "assets/image/" + signUpImages[index]),

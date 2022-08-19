@@ -26,7 +26,8 @@ class PopularFoodDetail extends StatelessWidget {
     Get.find<PopularProductController>()
         .initProduct(product, Get.find<CartController>());
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor:
+          Get.isDarkMode ? context.theme.primaryColorDark : Colors.white,
       body: Stack(
         children: [
           //bacground image
@@ -92,7 +93,9 @@ class PopularFoodDetail extends StatelessWidget {
                                     icon: Icons.circle,
                                     size: Dimensions.iconSize20,
                                     iconColor: Colors.transparent,
-                                    backgroundColor: AppColors.mainColor,
+                                    backgroundColor: Get.isDarkMode
+                                        ? Colors.black
+                                        : AppColors.mainColor,
                                   ),
                                 )
                               : Container(),
@@ -132,7 +135,9 @@ class PopularFoodDetail extends StatelessWidget {
                   topRight: Radius.circular(Dimensions.radius20),
                   topLeft: Radius.circular(Dimensions.radius20),
                 ),
-                color: Colors.white,
+                color: Get.isDarkMode
+                    ? Theme.of(context).primaryColorDark
+                    : Colors.white,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -166,7 +171,9 @@ class PopularFoodDetail extends StatelessWidget {
                 left: Dimensions.width20,
                 right: Dimensions.width20),
             decoration: BoxDecoration(
-              color: AppColors.buttonBackgroundColor,
+              color: Get.isDarkMode
+                  ? Colors.black26
+                  : AppColors.buttonBackgroundColor,
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(Dimensions.radius20 * 2),
                 topRight: Radius.circular(Dimensions.radius20 * 2),
@@ -185,7 +192,7 @@ class PopularFoodDetail extends StatelessWidget {
                   ),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(Dimensions.radius20),
-                      color: Colors.white),
+                      color: Get.isDarkMode ? Colors.black12 : Colors.white),
                   child: Row(
                     children: [
                       GestureDetector(
@@ -228,7 +235,7 @@ class PopularFoodDetail extends StatelessWidget {
                     ),
                     child: BigText(
                       text: "\₦ ${product.price!} | Add to cart",
-                      color: Colors.white,
+                      // color: Colors.white,
                     ),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(Dimensions.radius20),

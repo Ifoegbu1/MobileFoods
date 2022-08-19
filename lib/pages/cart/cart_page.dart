@@ -10,6 +10,7 @@ import 'package:e_commerce/utils/dimensions.dart';
 import 'package:e_commerce/widgets/app_icon.dart';
 import 'package:e_commerce/widgets/big_text.dart';
 import 'package:e_commerce/widgets/small_text.dart';
+import 'package:e_commerce/widgets/static_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -164,7 +165,7 @@ class CartPage extends StatelessWidget {
                                                       MainAxisAlignment
                                                           .spaceBetween,
                                                   children: [
-                                                    BigText(
+                                                    StaticText(
                                                       text: _cartList[index]
                                                           .price
                                                           .toString(),
@@ -182,11 +183,14 @@ class CartPage extends StatelessWidget {
                                                             Dimensions.width10,
                                                       ),
                                                       decoration: BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius.circular(
-                                                                  Dimensions
-                                                                      .radius20),
-                                                          color: Colors.white),
+                                                        borderRadius:
+                                                            BorderRadius.circular(
+                                                                Dimensions
+                                                                    .radius20),
+                                                        color: Get.isDarkMode
+                                                            ? Colors.black12
+                                                            : Colors.white,
+                                                      ),
                                                       child: Row(
                                                         children: [
                                                           GestureDetector(
@@ -264,7 +268,9 @@ class CartPage extends StatelessWidget {
                 left: Dimensions.width20,
                 right: Dimensions.width20),
             decoration: BoxDecoration(
-              color: AppColors.buttonBackgroundColor,
+              color: Get.isDarkMode
+                  ? Colors.black26
+                  : AppColors.buttonBackgroundColor,
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(Dimensions.radius20 * 2),
                 topRight: Radius.circular(Dimensions.radius20 * 2),
@@ -285,7 +291,8 @@ class CartPage extends StatelessWidget {
                         decoration: BoxDecoration(
                             borderRadius:
                                 BorderRadius.circular(Dimensions.radius20),
-                            color: Colors.white),
+                            color:
+                                Get.isDarkMode ? Colors.black12 : Colors.white),
                         child: Row(
                           children: [
                             SizedBox(width: Dimensions.width10 / 2),

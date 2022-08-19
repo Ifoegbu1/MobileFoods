@@ -3,8 +3,10 @@ import 'package:e_commerce/pages/auth/sign_in_page.dart';
 import 'package:e_commerce/pages/auth/sign_up_page.dart';
 import 'package:e_commerce/pages/cart/cart_history.dart';
 import 'package:e_commerce/pages/home/main_food_page.dart';
+import 'package:e_commerce/services/theme_services.dart';
 import 'package:e_commerce/utils/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 class HomePage extends StatefulWidget {
@@ -41,6 +43,8 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
+      // appBar: _appBar(),
       body: pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
           selectedItemColor: AppColors.mainColor,
@@ -157,4 +161,37 @@ class _HomePageState extends State<HomePage> {
   //         NavBarStyle.style1, // Choose the nav bar style with this property.
   //   );
   // }
+
+  _appBar() {
+    return AppBar(
+      elevation: 0,
+      backgroundColor: context.theme.backgroundColor,
+      leading: GestureDetector(
+        onTap: () {
+          ThemeServices().switchTheme();
+          // notifyHelper.displayNotification(
+          //   title: "Theme Changed",
+          //   body: Get.isDarkMode
+          //       ? "Activated Light Theme"
+          //       : "Activated Dark Theme",
+          // );
+
+          // notifyHelper.scheduledNotification();
+        },
+        child: Icon(
+          Get.isDarkMode ? Icons.wb_sunny_outlined : Icons.nightlight_round,
+          size: 20,
+          color: Get.isDarkMode ? Colors.white : Colors.black,
+        ),
+      ),
+      // actions: const [
+      //   CircleAvatar(
+      //     backgroundImage: AssetImage("images/profile.jpg"),
+      //   ),
+      //   SizedBox(
+      //     width: 20,
+      //   ),
+      // ],
+    );
+  }
 }

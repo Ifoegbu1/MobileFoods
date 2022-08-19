@@ -8,6 +8,7 @@ import 'package:e_commerce/utils/dimensions.dart';
 import 'package:e_commerce/widgets/account_widget.dart';
 import 'package:e_commerce/widgets/app_icon.dart';
 import 'package:e_commerce/widgets/big_text.dart';
+import 'package:e_commerce/widgets/static_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -23,11 +24,19 @@ class AccountPage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: AppColors.mainColor,
-          title: Center(
-            child: BigText(
-              text: "Profile",
-              size: Dimensions.height20 + 4,
-              color: Colors.white,
+          title: Padding(
+            padding: const EdgeInsets.only(right: 30),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                StaticText(
+                  text: "Profile",
+                  size: Dimensions.height20 + 4,
+                  color: Get.isDarkMode
+                      ? Colors.black.withAlpha(190)
+                      : Colors.white,
+                ),
+              ],
             ),
           ),
         ),
@@ -166,6 +175,7 @@ class AccountPage extends StatelessWidget {
                               borderRadius:
                                   BorderRadius.circular(Dimensions.radius20),
                               image: DecorationImage(
+                                invertColors: false,
                                 fit: BoxFit.cover,
                                 image: AssetImage(
                                     "assets/image/signintocontinue.png"),

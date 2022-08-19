@@ -10,6 +10,7 @@ import 'package:e_commerce/utils/dimensions.dart';
 import 'package:e_commerce/widgets/app_icon.dart';
 import 'package:e_commerce/widgets/big_text.dart';
 import 'package:e_commerce/widgets/small_text.dart';
+import 'package:e_commerce/widgets/static_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -70,9 +71,11 @@ class CartHistory extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                BigText(
+                StaticText(
                   text: "Cart History",
-                  color: Colors.white,
+                  color: Get.isDarkMode
+                      ? Colors.black.withAlpha(190)
+                      : Colors.white,
                 ),
                 AppIcon(
                   icon: Icons.shopping_cart_outlined,

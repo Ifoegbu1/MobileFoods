@@ -55,7 +55,8 @@ class SignInPage extends StatelessWidget {
     }
 
     return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor:
+            Get.isDarkMode ? context.theme.primaryColorDark : Colors.white,
         body: GetBuilder<AuthController>(
           builder: (_authController) {
             return !_authController.isLoading
@@ -69,7 +70,9 @@ class SignInPage extends StatelessWidget {
                           height: Dimensions.screenHeight * 0.25,
                           child: Center(
                             child: CircleAvatar(
-                              backgroundColor: Colors.white,
+                              backgroundColor: Get.isDarkMode
+                                  ? context.theme.primaryColorDark
+                                  : Colors.white,
                               radius: Dimensions.radius20 * 4,
                               backgroundImage:
                                   AssetImage("assets/image/logo part 1.png"),
@@ -176,7 +179,9 @@ class SignInPage extends StatelessWidget {
                                     text: " Create",
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        color: AppColors.mainBlackColor,
+                                        color: Get.isDarkMode
+                                            ? Colors.grey[900]
+                                            : AppColors.mainBlackColor,
                                         fontSize: Dimensions.font20)),
                               ]),
                         ),
