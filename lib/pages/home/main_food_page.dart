@@ -32,7 +32,6 @@ class _MainFoodPageState extends State<MainFoodPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     if (data.read('mode') != null) {
       isDarkModeEnabled = data.read('mode');
@@ -161,7 +160,6 @@ class _MainFoodPageState extends State<MainFoodPage> {
         ThemeServices().switchTheme();
         Get.snackbar("Theme", "Dark mode activated",
             icon: Icon(Icons.nightlight_outlined));
-
         data.write('mode', isDarkModeEnabled);
       } else {
         ThemeServices().switchTheme();

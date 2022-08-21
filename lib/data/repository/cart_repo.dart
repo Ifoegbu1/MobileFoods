@@ -51,6 +51,7 @@ class CartRepo {
     cartHistory.forEach((element) =>
         cartListHistory.add(CartModel.fromJson(jsonDecode(element))));
     return cartListHistory;
+
   }
 
   void addToCartHistoryList() {

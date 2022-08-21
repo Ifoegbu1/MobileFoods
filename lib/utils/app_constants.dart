@@ -9,6 +9,8 @@ class AppConstants {
   static const String RECOMMENDED_PRODUCT_URI = "/api/v1/products/recommended";
 //  static const String DRINKS_URI = "/api/v1/products/drinks";
   static const String UPLOAD_URL = "/uploads/";
+  static const String CLOUD_URL =
+      "https://s3.eu-west-3.amazonaws.com/ifoh-bucket/";
 
 //user and auth end-points
   static const String REGISTRATION_URI = "/api/v1/auth/register";

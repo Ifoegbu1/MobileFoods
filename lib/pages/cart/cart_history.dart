@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerce/base/no_data_page.dart';
 import 'package:e_commerce/controllers/cart_controller.dart';
 import 'package:e_commerce/models/cart_model.dart';
@@ -143,14 +144,13 @@ class CartHistory extends StatelessWidget {
                                                               2),
                                                       image: DecorationImage(
                                                         fit: BoxFit.cover,
-                                                        image: NetworkImage(AppConstants
-                                                                .BASE_URL +
+                                                        image: CachedNetworkImageProvider(
                                                             AppConstants
-                                                                .UPLOAD_URL +
-                                                            getCartHistoryList[
-                                                                    listCounter -
-                                                                        1]
-                                                                .img!),
+                                                                    .CLOUD_URL +
+                                                                getCartHistoryList[
+                                                                        listCounter -
+                                                                            1]
+                                                                    .img!),
                                                       ),
                                                     ),
                                                   )

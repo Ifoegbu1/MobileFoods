@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerce/controllers/cart_controller.dart';
 import 'package:e_commerce/controllers/popular_product_controller.dart';
 import 'package:e_commerce/controllers/recommeded_product_controller.dart';
@@ -76,7 +77,9 @@ class RecommendedFoodDetail extends StatelessWidget {
                                       icon: Icons.circle,
                                       size: Dimensions.iconSize20,
                                       iconColor: Colors.transparent,
-                                      backgroundColor: AppColors.mainColor,
+                                      backgroundColor: Get.isDarkMode
+                                          ? Colors.black
+                                          : AppColors.mainColor,
                                     ),
                                   )
                                 : Container(),
@@ -122,14 +125,16 @@ class RecommendedFoodDetail extends StatelessWidget {
               backgroundColor: AppColors.yellowColor,
               expandedHeight: 300,
               flexibleSpace: FlexibleSpaceBar(
-                background: Image.network(
-                  AppConstants.BASE_URL +
-                      AppConstants.UPLOAD_URL +
-                      product.img!,
-                  width: double.maxFinite,
-                  fit: BoxFit.cover,
-                ),
-              ),
+                  background: CachedNetworkImage(
+                imageUrl: AppConstants.CLOUD_URL + product.img!,
+                fit: BoxFit.cover,
+                width: double.maxFinite,
+              )),
+// Image.network(
+//                   AppConstants.CLOUD_URL + product.img!,
+//                   width: double.maxFinite,
+//                   fit: BoxFit.cover,
+//                 ),
             ),
             SliverToBoxAdapter(
               child: Column(

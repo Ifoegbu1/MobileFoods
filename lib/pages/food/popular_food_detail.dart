@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerce/controllers/cart_controller.dart';
 import 'package:e_commerce/controllers/popular_product_controller.dart';
 import 'package:e_commerce/routes/route_helper.dart';
@@ -40,9 +41,8 @@ class PopularFoodDetail extends StatelessWidget {
               decoration: BoxDecoration(
                 image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: NetworkImage(AppConstants.BASE_URL +
-                      AppConstants.UPLOAD_URL +
-                      product.img!),
+                  image: CachedNetworkImageProvider(
+                      AppConstants.CLOUD_URL + product.img!),
                 ),
               ),
             ),
