@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class BigText extends StatelessWidget {
-  Color? color;
+  final Color? color;
   final String text;
-  double size;
-  TextOverflow overFlow;
-  BigText({
+  final double size;
+  final TextOverflow overFlow;
+ const BigText({
     Key? key,
     this.color = const Color(0xFF332d2b),
     required this.text,

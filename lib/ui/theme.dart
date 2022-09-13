@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 const Color bluishClr = Color(0xFF4e5ae8);
 const Color yellowClr = Color(0xFFFFB746);
@@ -18,7 +17,7 @@ class Themes {
 
   static final dark = ThemeData(
     backgroundColor: darkGreyClr,
-    primaryColorDark: Color.fromARGB(255, 48, 48, 48),
+    primaryColorDark: const Color.fromARGB(255, 48, 48, 48),
     appBarTheme: const AppBarTheme(backgroundColor: darkGreyClr),
     brightness: Brightness.dark,
   );

@@ -23,7 +23,7 @@ class AuthRepo {
   }
 
   Future<String> getUserToken() async {
-    return await sharedPreferences.getString(AppConstants.TOKEN) ?? "None";
+    return sharedPreferences.getString(AppConstants.TOKEN) ?? "None";
   }
 
   Future<Response> logIn(String email, String password) async {
@@ -44,7 +44,7 @@ class AuthRepo {
       await sharedPreferences.setString(AppConstants.PHONE, phone);
       await sharedPreferences.setString(AppConstants.PASSWORD, password);
     } catch (e) {
-      throw e;
+      rethrow;
     }
   }
 

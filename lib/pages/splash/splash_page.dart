@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:e_commerce/controllers/cart_controller.dart';
 import 'package:e_commerce/controllers/popular_product_controller.dart';
 import 'package:e_commerce/controllers/recommeded_product_controller.dart';
 import 'package:e_commerce/routes/route_helper.dart';

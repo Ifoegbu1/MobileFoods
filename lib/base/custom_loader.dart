@@ -1,4 +1,3 @@
-import 'package:e_commerce/controllers/auth_controller.dart';
 import 'package:e_commerce/utils/colors.dart';
 import 'package:e_commerce/utils/dimensions.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +14,7 @@ class CustomLoader extends StatelessWidget {
             borderRadius: BorderRadius.circular(Dimensions.radius20 * 2.5),
             color: AppColors.mainColor),
         alignment: Alignment.center,
-        child: CircularProgressIndicator(
+        child: const CircularProgressIndicator(
           color: Colors.white,
         ),
       ),

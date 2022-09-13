@@ -22,8 +22,8 @@ class PopularFoodDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     var product =
         Get.find<PopularProductController>().popularProductList[pageId];
-    // print("page is id " + pageId.toString());
-    // print("product name is " + product.name.toString());
+    //
+    //
     Get.find<PopularProductController>()
         .initProduct(product, Get.find<CartController>());
     return Scaffold(
@@ -55,19 +55,19 @@ class PopularFoodDetail extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                GestureDetector(
+                InkWell(
                   onTap: () {
                     if (page == "cartPage") {
                       Get.toNamed(RouteHelper.getCartPage());
                     } else {
-                      Get.toNamed(RouteHelper.getInitial());
+                      Get.back();
                     }
                   },
-                  child: AppIcon(icon: Icons.arrow_back_ios),
+                  child: const AppIcon(icon: Icons.arrow_back_ios),
                 ),
                 GetBuilder<PopularProductController>(
                   builder: (controller) {
-                    return GestureDetector(
+                    return InkWell(
                       onTap: () {
                         if (controller.totalItems >= 0) {
                           Get.toNamed(RouteHelper.getCartPage());
@@ -82,7 +82,7 @@ class PopularFoodDetail extends StatelessWidget {
                       },
                       child: Stack(
                         children: [
-                          AppIcon(
+                          const AppIcon(
                             icon: Icons.shopping_cart_outlined,
                           ),
                           controller.totalItems >= 1
@@ -144,7 +144,7 @@ class PopularFoodDetail extends StatelessWidget {
                 children: [
                   AppColumn(text: product.name!),
                   SizedBox(height: Dimensions.height20),
-                  BigText(text: "Introduce"),
+                  const BigText(text: "Introduce"),
                   SizedBox(height: Dimensions.height20),
 
                   //expandable text widget
@@ -195,11 +195,11 @@ class PopularFoodDetail extends StatelessWidget {
                       color: Get.isDarkMode ? Colors.black12 : Colors.white),
                   child: Row(
                     children: [
-                      GestureDetector(
+                      InkWell(
                         onTap: () {
                           popularProductControl.setQuantity(false);
                         },
-                        child: Icon(
+                        child: const Icon(
                           Icons.remove,
                           color: AppColors.signColor,
                         ),
@@ -208,11 +208,11 @@ class PopularFoodDetail extends StatelessWidget {
                       BigText(
                           text: popularProductControl.inCartItems.toString()),
                       SizedBox(width: Dimensions.width10 / 2),
-                      GestureDetector(
+                      InkWell(
                         onTap: () {
                           popularProductControl.setQuantity(true);
                         },
-                        child: Icon(
+                        child: const Icon(
                           Icons.add,
                           color: AppColors.signColor,
                         ),
@@ -222,7 +222,7 @@ class PopularFoodDetail extends StatelessWidget {
                 ),
 
                 //add to cart container
-                GestureDetector(
+                InkWell(
                   onTap: () {
                     popularProductControl.addItem(product);
                   },
@@ -234,7 +234,7 @@ class PopularFoodDetail extends StatelessWidget {
                       right: Dimensions.width20,
                     ),
                     child: BigText(
-                      text: "\₦ ${product.price!} | Add to cart",
+                      text: "₦ ${product.price!} | Add to cart",
                       // color: Colors.white,
                     ),
                     decoration: BoxDecoration(

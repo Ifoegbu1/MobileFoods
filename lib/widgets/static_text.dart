@@ -2,11 +2,11 @@ import 'package:e_commerce/utils/dimensions.dart';
 import 'package:flutter/material.dart';
 
 class StaticText extends StatelessWidget {
-  Color? color;
+ final Color? color;
   final String text;
-  double size;
-  TextOverflow overFlow;
-  StaticText({
+ final double size;
+  final TextOverflow overFlow;
+  const StaticText({
     Key? key,
     this.color = const Color(0xFF332d2b),
     required this.text,

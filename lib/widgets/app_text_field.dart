@@ -1,7 +1,6 @@
 import 'package:e_commerce/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:e_commerce/utils/dimensions.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AppTextField extends StatelessWidget {
@@ -9,9 +8,9 @@ class AppTextField extends StatelessWidget {
   final String hintText;
   final IconData icon;
   final Color color;
-  bool obscureText;
+ final bool obscureText;
   final TextInputType keyboardType;
-  AppTextField({
+ const AppTextField({
     Key? key,
     required this.textController,
     required this.hintText,
@@ -35,7 +34,7 @@ class AppTextField extends StatelessWidget {
           BoxShadow(
             blurRadius: Dimensions.radius20 - 17,
             spreadRadius: Dimensions.radius15 - 14,
-            offset: Offset(1, 1),
+            offset: const Offset(1, 1),
             color: Get.isDarkMode ? Colors.black : Colors.grey.withOpacity(0.2),
           ),
         ],

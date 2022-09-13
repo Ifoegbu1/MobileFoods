@@ -35,18 +35,18 @@ class AppColumn extends StatelessWidget {
               ),
             ),
             SizedBox(width: Dimensions.mainwidth10),
-            SmallText(text: "4.5"),
+            const SmallText(text: "4.5"),
             SizedBox(width: Dimensions.mainwidth10),
-            SmallText(text: "1287"),
+            const SmallText(text: "1287"),
             SizedBox(width: Dimensions.mainwidth10),
-            SmallText(text: "comments"),
+            const SmallText(text: "comments"),
           ],
         ),
         SizedBox(height: Dimensions.height20),
         //time and distance
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
+          children:  const[
             IconAndTextWidget(
               icon: Icons.circle_sharp,
               text: "Normal",

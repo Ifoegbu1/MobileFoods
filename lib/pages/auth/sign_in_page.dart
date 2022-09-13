@@ -61,12 +61,12 @@ class SignInPage extends StatelessWidget {
           builder: (_authController) {
             return !_authController.isLoading
                 ? SingleChildScrollView(
-                    physics: BouncingScrollPhysics(),
+                    physics: const BouncingScrollPhysics(),
                     child: Column(
                       children: [
                         SizedBox(height: Dimensions.screenHeight * 0.05),
                         //app logo
-                        Container(
+                        SizedBox(
                           height: Dimensions.screenHeight * 0.25,
                           child: Center(
                             child: CircleAvatar(
@@ -74,8 +74,8 @@ class SignInPage extends StatelessWidget {
                                   ? context.theme.primaryColorDark
                                   : Colors.white,
                               radius: Dimensions.radius20 * 4,
-                              backgroundImage:
-                                  AssetImage("assets/image/logo part 1.png"),
+                              backgroundImage: const AssetImage(
+                                  "assets/image/logo part 1.png"),
                             ),
                           ),
                         ),
@@ -143,7 +143,7 @@ class SignInPage extends StatelessWidget {
 
                         SizedBox(height: Dimensions.screenHeight * 0.05),
                         //Sign In button
-                        GestureDetector(
+                        InkWell(
                           onTap: () {
                             _logIn(_authController);
                           },
@@ -174,7 +174,8 @@ class SignInPage extends StatelessWidget {
                               children: [
                                 TextSpan(
                                     recognizer: TapGestureRecognizer()
-                                      ..onTap = () => Get.to(() => SignUpPage(),
+                                      ..onTap = () => Get.to(
+                                          () => const SignUpPage(),
                                           transition: Transition.fade),
                                     text: " Create",
                                     style: TextStyle(
@@ -188,7 +189,7 @@ class SignInPage extends StatelessWidget {
                       ],
                     ),
                   )
-                : CustomLoader();
+                : const CustomLoader();
           },
         ));
   }

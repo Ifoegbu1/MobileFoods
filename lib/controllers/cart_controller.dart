@@ -41,12 +41,12 @@ class CartController extends GetxController {
         _items.putIfAbsent(
           product.id!,
           () {
-            // print("adding item to cart id " +
+            //
             //     product.id!.toString() +
             //     " quantity " +
             //     quantity.toString());
             // _items.forEach((key, value) {
-            //   print("quantity is " + value.quantity.toString());
+            //
             // });
             return CartModel(
               id: product.id,
@@ -72,7 +72,7 @@ class CartController extends GetxController {
     cartRepo.addToCartList(getItems);
     update();
 
-    // print("length of the item is " + _items.length.toString());
+    //
   }
 
   bool existInCart(ProductModel product) {
@@ -125,7 +125,7 @@ class CartController extends GetxController {
 
   set setCart(List<CartModel> items) {
     storageItems = items;
-    print("length of cart items " + storageItems.length.toString());
+
     for (int i = 0; i < storageItems.length; i++) {
       _items.putIfAbsent(storageItems[i].product!.id!, () => storageItems[i]);
     }

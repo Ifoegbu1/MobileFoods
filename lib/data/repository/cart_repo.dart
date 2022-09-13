@@ -18,10 +18,10 @@ class CartRepo {
     cart = [];
 
     //convert Object to String because SharedPreferences only accepts Strings
-    cartList.forEach((element) {
+    for (var element in cartList) {
       element.time = time;
-      return cart.add(jsonEncode(element));
-    });
+      continue;
+    }
     sharedPreferences.setStringList(AppConstants.CART_LIST, cart);
     // print(sharedPreferences.getStringList(AppConstants.CART_LIST));
     //getCartList();
@@ -31,12 +31,12 @@ class CartRepo {
     List<String> carts = [];
     if (sharedPreferences.containsKey(AppConstants.CART_LIST)) {
       carts = sharedPreferences.getStringList(AppConstants.CART_LIST)!;
-      print("inside getCartList" + carts.toString());
     }
     List<CartModel> cartList = [];
 
-    carts.forEach(
-        (element) => cartList.add(CartModel.fromJson(jsonDecode(element))));
+    for (var element in carts) {
+      cartList.add(CartModel.fromJson(jsonDecode(element)));
+    }
 
     return cartList;
   }
@@ -48,8 +48,9 @@ class CartRepo {
           sharedPreferences.getStringList(AppConstants.CART_HISTORY_LIST)!;
     }
     List<CartModel> cartListHistory = [];
-    cartHistory.forEach((element) =>
-        cartListHistory.add(CartModel.fromJson(jsonDecode(element))));
+    for (var element in cartHistory) {
+      cartListHistory.add(CartModel.fromJson(jsonDecode(element)));
+    }
     return cartListHistory;
 
   }
@@ -60,17 +61,16 @@ class CartRepo {
           sharedPreferences.getStringList(AppConstants.CART_HISTORY_LIST)!;
     }
     for (int i = 0; i < cart.length; i++) {
-      print("history list " + cart[i]);
       cartHistory.add(cart[i]);
     }
     removeCart();
     sharedPreferences.setStringList(
         AppConstants.CART_HISTORY_LIST, cartHistory);
-    print("the length of history list is " +
-        getCartHistoryList().length.toString());
+    // print("the length of history list is " +
+    //     getCartHistoryList().length.toString());
     for (int j = 0; j < getCartHistoryList().length; j++) {
-      print("the time for the order is " +
-          getCartHistoryList()[j].time.toString());
+      // print("the time for the order is " +
+      //     getCartHistoryList()[j].time.toString());
     }
   }
 

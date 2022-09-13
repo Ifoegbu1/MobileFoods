@@ -1,3 +1,5 @@
+// ignore_for_file: unused_field
+
 class Product {
   int? _totalSize;
   int? _typeId;
@@ -11,10 +13,10 @@ class Product {
     required offset,
     required products,
   }) {
-    this._totalSize = totalSize;
-    this._typeId = typeId;
-    this._offset = offset;
-    this._products = products;
+    _totalSize = totalSize;
+    _typeId = typeId;
+    _offset = offset;
+    _products = products;
   }
 
   Product.fromJson(Map<String, dynamic> json) {
@@ -70,14 +72,14 @@ class ProductModel {
 
   Map<String, dynamic> toJson() {
     return {
-      "id": this.id,
-      "name": this.name,
-      "price": this.price,
-      "img": this.img,
-      "location": this.location,
-      "createdAt": this.createdAt,
-      "updatedAt": this.updatedAt,
-      "typeId": this.typeId,
+      "id": id,
+      "name": name,
+      "price": price,
+      "img": img,
+      "location": location,
+      "createdAt": createdAt,
+      "updatedAt": updatedAt,
+      "typeId": typeId,
     };
   }
 }

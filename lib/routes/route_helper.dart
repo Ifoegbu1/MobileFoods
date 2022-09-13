@@ -14,23 +14,23 @@ class RouteHelper {
   static const String cartPage = "/cart-page";
   static const String signIn = "/sign-in";
 
-  static String getSplashPage() => '$splashPage';
-  static String getInitial() => '$initial';
+  static String getSplashPage() => splashPage;
+  static String getInitial() => initial;
   static String getPopularFood(int pageId, String page) =>
       '$popularFood?pageId=$pageId&page=$page';
   static String getRecommendedFood(int pageId, String page) =>
       '$recommendedFood?pageId=$pageId&page=$page';
 
-  static String getCartPage() => '$cartPage';
-  static String getSignInPage() => '$signIn';
+  static String getCartPage() => cartPage;
+  static String getSignInPage() => signIn;
 
   static List<GetPage> routes = [
-    GetPage(name: splashPage, page: () => SplashScreen()),
-    GetPage(name: initial, page: () => HomePage()),
+    GetPage(name: splashPage, page: () => const SplashScreen()),
+    GetPage(name: initial, page: () => const HomePage()),
     GetPage(
         name: signIn,
         page: () {
-          return SignInPage();
+          return const SignInPage();
         },
         transition: Transition.fadeIn),
     GetPage(
@@ -57,7 +57,7 @@ class RouteHelper {
     GetPage(
       name: cartPage,
       page: () {
-        return CartPage();
+        return const CartPage();
       },
       transition: Transition.fadeIn,
     ),

@@ -1,5 +1,7 @@
+// ignore_for_file: constant_identifier_names
+
 class AppConstants {
-  static const String APP_NAME = "DBFOOD";
+  static const String APP_NAME = "MOBILE FOODS";
   static const int APP_VERSION = 1;
 
   static const String BASE_URL = "https://ifoegbu1-laravel.herokuapp.com";

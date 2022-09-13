@@ -2,11 +2,11 @@ import 'package:e_commerce/utils/dimensions.dart';
 import 'package:flutter/material.dart';
 
 class SmallText extends StatelessWidget {
-  Color? color;
+ final  Color? color;
   final String text;
-  double size;
-  double height;
-  SmallText(
+  final double size;
+  final double height;
+ const SmallText(
       {Key? key,
       this.color = const Color(0xFFccc7c5),
       required this.text,

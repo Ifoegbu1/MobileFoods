@@ -25,7 +25,6 @@ class CartPage extends StatelessWidget {
       onWillPop: () async {
         if (isClicked) {
           Transition.fadeIn;
-
           Get.forceAppUpdate();
           Get.back();
         }
@@ -42,7 +41,7 @@ class CartPage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  GestureDetector(
+                  InkWell(
                     onTap: () {
                       Transition.fadeIn;
                       Get.forceAppUpdate();
@@ -56,7 +55,7 @@ class CartPage extends StatelessWidget {
                     ),
                   ),
                   SizedBox(width: Dimensions.width20 * 5),
-                  GestureDetector(
+                  InkWell(
                     onTap: () {
                       Get.toNamed(RouteHelper.getInitial());
                     },
@@ -79,7 +78,7 @@ class CartPage extends StatelessWidget {
 
             //body
             GetBuilder<CartController>(builder: (_cartController) {
-              return _cartController.getItems.length > 0
+              return _cartController.getItems.isNotEmpty
                   ? Positioned(
                       top: Dimensions.height20 * 5,
                       left: Dimensions.width20,
@@ -97,13 +96,13 @@ class CartPage extends StatelessWidget {
                                 return ListView.builder(
                                   itemCount: _cartList.length,
                                   itemBuilder: (_, index) {
-                                    return Container(
+                                    return SizedBox(
                                       height: Dimensions.height20 * 5,
                                       width: double.maxFinite,
                                       child: Row(
                                         children: [
                                           //image container
-                                          GestureDetector(
+                                          InkWell(
                                             onTap: () {
                                               var popularIndex = Get.find<
                                                       PopularProductController>()
@@ -161,7 +160,7 @@ class CartPage extends StatelessWidget {
                                           SizedBox(width: Dimensions.width10),
                                           //text and price container
                                           Expanded(
-                                            child: Container(
+                                            child: SizedBox(
                                               height: Dimensions.height20 * 5,
                                               child: Column(
                                                 crossAxisAlignment:
@@ -175,7 +174,8 @@ class CartPage extends StatelessWidget {
                                                         _cartList[index].name!,
                                                     color: Colors.black54,
                                                   ),
-                                                  SmallText(text: "Spicy"),
+                                                  const SmallText(
+                                                      text: "Spicy"),
                                                   Row(
                                                     mainAxisAlignment:
                                                         MainAxisAlignment
@@ -211,7 +211,7 @@ class CartPage extends StatelessWidget {
                                                         ),
                                                         child: Row(
                                                           children: [
-                                                            GestureDetector(
+                                                            InkWell(
                                                               onTap: () {
                                                                 cartController.addItem(
                                                                     _cartList[
@@ -219,7 +219,7 @@ class CartPage extends StatelessWidget {
                                                                         .product!,
                                                                     -1);
                                                               },
-                                                              child: Icon(
+                                                              child: const Icon(
                                                                 Icons.remove,
                                                                 color: AppColors
                                                                     .signColor,
@@ -238,7 +238,7 @@ class CartPage extends StatelessWidget {
                                                                 width: Dimensions
                                                                         .width10 /
                                                                     2),
-                                                            GestureDetector(
+                                                            InkWell(
                                                               onTap: () {
                                                                 cartController.addItem(
                                                                     _cartList[
@@ -246,7 +246,7 @@ class CartPage extends StatelessWidget {
                                                                         .product!,
                                                                     1);
                                                               },
-                                                              child: Icon(
+                                                              child: const Icon(
                                                                 Icons.add,
                                                                 color: AppColors
                                                                     .signColor,
@@ -270,7 +270,7 @@ class CartPage extends StatelessWidget {
                             )),
                       ),
                     )
-                  : NoDataPage(
+                  : const NoDataPage(
                       text: "Your cart is empty!",
                     );
             })
@@ -294,7 +294,7 @@ class CartPage extends StatelessWidget {
                   topRight: Radius.circular(Dimensions.radius20 * 2),
                 ),
               ),
-              child: cartController.getItems.length > 0
+              child: cartController.getItems.isNotEmpty
                   ? Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -324,7 +324,7 @@ class CartPage extends StatelessWidget {
                         ),
 
                         //check-out container
-                        GestureDetector(
+                        InkWell(
                           onTap: () {
                             if (Get.find<AuthController>().userLoggedIn()) {
                               cartController.addToHistory();
@@ -339,7 +339,7 @@ class CartPage extends StatelessWidget {
                               left: Dimensions.width20,
                               right: Dimensions.width20,
                             ),
-                            child: BigText(
+                            child: const BigText(
                               text: "Check out",
                               color: Colors.white,
                             ),

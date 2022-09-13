@@ -24,7 +24,7 @@ class CartHistory extends StatelessWidget {
     var getCartHistoryList =
         Get.find<CartController>().getCartHistoryList().reversed.toList();
 
-    Map<String, int> cartItemsPerOrder = Map();
+    Map<String, int> cartItemsPerOrder = {};
     for (int i = 0; i < getCartHistoryList.length; i++) {
       if (cartItemsPerOrder.containsKey(getCartHistoryList[i].time)) {
         cartItemsPerOrder.update(
@@ -78,7 +78,7 @@ class CartHistory extends StatelessWidget {
                       ? Colors.black.withAlpha(190)
                       : Colors.white,
                 ),
-                AppIcon(
+                const AppIcon(
                   icon: Icons.shopping_cart_outlined,
                   iconColor: AppColors.mainColor,
                   backgroundColor: AppColors.yellowColor,
@@ -89,7 +89,7 @@ class CartHistory extends StatelessWidget {
 
           //ListView section
           GetBuilder<CartController>(builder: (_cartController) {
-            return _cartController.getCartHistoryList().length > 0
+            return _cartController.getCartHistoryList().isNotEmpty
                 ? Expanded(
                     child: Container(
                       margin: EdgeInsets.only(
@@ -157,7 +157,7 @@ class CartHistory extends StatelessWidget {
                                                 : Container();
                                           }),
                                         ),
-                                        Container(
+                                        SizedBox(
                                           height: Dimensions.height40 * 2,
                                           child: Column(
                                             mainAxisAlignment:
@@ -165,7 +165,7 @@ class CartHistory extends StatelessWidget {
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.end,
                                             children: [
-                                              SmallText(
+                                              const SmallText(
                                                 text: "Total",
                                                 color: AppColors.titleColor,
                                               ),
@@ -184,7 +184,7 @@ class CartHistory extends StatelessWidget {
                                                       color:
                                                           AppColors.titleColor,
                                                     ),
-                                              GestureDetector(
+                                              InkWell(
                                                 onTap: () {
                                                   var orderTime =
                                                       cartOrderTimeToList();
@@ -233,7 +233,7 @@ class CartHistory extends StatelessWidget {
                                                         color: AppColors
                                                             .mainColor),
                                                   ),
-                                                  child: SmallText(
+                                                  child: const SmallText(
                                                     text: "one more",
                                                     color: AppColors.mainColor,
                                                   ),

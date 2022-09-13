@@ -1,13 +1,15 @@
+import 'package:animated_icon/animate_icon.dart';
+import 'package:animated_icon/animate_icons.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:e_commerce/controllers/popular_product_controller.dart';
+import 'package:e_commerce/controllers/recommeded_product_controller.dart';
 import 'package:e_commerce/pages/account/account_page.dart';
-import 'package:e_commerce/pages/auth/sign_in_page.dart';
-import 'package:e_commerce/pages/auth/sign_up_page.dart';
 import 'package:e_commerce/pages/cart/cart_history.dart';
 import 'package:e_commerce/pages/home/main_food_page.dart';
-import 'package:e_commerce/services/theme_services.dart';
 import 'package:e_commerce/utils/colors.dart';
+import 'package:e_commerce/utils/dimensions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -19,13 +21,46 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
 
+  Future<void> _loadResources() async {
+    await Get.find<PopularProductController>().getPopularProductList();
+    await Get.find<RecommendedProductController>().getRecommendedProductList();
+    // Get.find<CartController>();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    initConnectivity();
+  }
+
+  Future<void> initConnectivity() async {
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.mobile) {
+      _loadResources();
+    } else if (connectivityResult == ConnectivityResult.wifi) {
+      _loadResources();
+    } else {
+      Get.snackbar("No internet connection", "Connect and tap the refresh icon",
+          duration: const Duration(hours: 2),
+          icon: AnimateIcon(
+              height: Dimensions.height20,
+              onTap: () {
+                Get.closeCurrentSnackbar();
+                _loadResources();
+              },
+              iconType: IconType.animatedOnTap,
+              animateIcon: AnimateIcons.refresh),
+          colorText: Colors.red.withAlpha(200));
+    }
+  }
+
   // late PersistentTabController _controller;
 
   List pages = [
-    MainFoodPage(),
-    Container(child: Center(child: Text("History page"))),
-    CartHistory(),
-    AccountPage(),
+    const MainFoodPage(),
+    const Center(child: Text("History page")),
+    const CartHistory(),
+    const AccountPage(),
   ];
 
   void onTapNav(int index) {
@@ -43,7 +78,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       // appBar: _appBar(),
       body: pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
@@ -162,36 +196,36 @@ class _HomePageState extends State<HomePage> {
   //   );
   // }
 
-  _appBar() {
-    return AppBar(
-      elevation: 0,
-      backgroundColor: context.theme.backgroundColor,
-      leading: GestureDetector(
-        onTap: () {
-          ThemeServices().switchTheme();
-          // notifyHelper.displayNotification(
-          //   title: "Theme Changed",
-          //   body: Get.isDarkMode
-          //       ? "Activated Light Theme"
-          //       : "Activated Dark Theme",
-          // );
+  // _appBar() {
+  //   return AppBar(
+  //     elevation: 0,
+  //     backgroundColor: context.theme.backgroundColor,
+  //     leading: InkWell(
+  //       onTap: () {
+  //         ThemeServices().switchTheme();
+  //         // notifyHelper.displayNotification(
+  //         //   title: "Theme Changed",
+  //         //   body: Get.isDarkMode
+  //         //       ? "Activated Light Theme"
+  //         //       : "Activated Dark Theme",
+  //         // );
 
-          // notifyHelper.scheduledNotification();
-        },
-        child: Icon(
-          Get.isDarkMode ? Icons.wb_sunny_outlined : Icons.nightlight_round,
-          size: 20,
-          color: Get.isDarkMode ? Colors.white : Colors.black,
-        ),
-      ),
-      // actions: const [
-      //   CircleAvatar(
-      //     backgroundImage: AssetImage("images/profile.jpg"),
-      //   ),
-      //   SizedBox(
-      //     width: 20,
-      //   ),
-      // ],
-    );
-  }
+  //         // notifyHelper.scheduledNotification();
+  //       },
+  //       child: Icon(
+  //         Get.isDarkMode ? Icons.wb_sunny_outlined : Icons.nightlight_round,
+  //         size: 20,
+  //         color: Get.isDarkMode ? Colors.white : Colors.black,
+  //       ),
+  //     ),
+  //     // actions: const [
+  //     //   CircleAvatar(
+  //     //     backgroundImage: AssetImage("images/profile.jpg"),
+  //     //   ),
+  //     //   SizedBox(
+  //     //     width: 20,
+  //     //   ),
+  //     // ],
+  //   );
+  // }
 }

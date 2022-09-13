@@ -28,7 +28,10 @@ class PopularProductController extends GetxController {
       // print(_popularProductList);
       _isLoaded = true;
       update();
-    } else {}
+    } else {
+      _isLoaded = false;
+    }
+    
   }
 
   void setQuantity(bool isIncrement) {
@@ -89,10 +92,7 @@ class PopularProductController extends GetxController {
     _quantity = 0;
     _inCartItems = _cart.getQuantity(product);
     _cart.items.forEach((key, value) {
-      print("The id is " +
-          value.id.toString() +
-          " The quantity is " +
-          value.quantity.toString());
+    
     });
 
     update();

@@ -1,4 +1,3 @@
-import 'package:e_commerce/data/repository/popular_product_repo.dart';
 import 'package:e_commerce/data/repository/recommended_product_repo.dart';
 import 'package:e_commerce/models/products_model.dart';
 import 'package:get/get.dart';
@@ -19,11 +18,11 @@ class RecommendedProductController extends GetxController {
     if (response.statusCode == 200) {
       _recommendedProductList = [];
       _recommendedProductList.addAll(Product.fromJson(response.body).products);
-      // print(_popularProductList);
+      //
       _isLoaded = true;
       update();
     } else {
-      // print(" could not get products recommended");
+      //
     }
   }
 }

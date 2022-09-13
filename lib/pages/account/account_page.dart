@@ -110,8 +110,8 @@ class AccountPage extends StatelessWidget {
                                         iconSize: Dimensions.iconSize24 + 1,
                                         size: Dimensions.height45 + 5,
                                       ),
-                                      bigText:
-                                          BigText(text: "Choba Port Harcourt"),
+                                      bigText: const BigText(
+                                          text: "Choba Port Harcourt"),
                                     ),
                                     SizedBox(height: Dimensions.height20),
                                     //messages
@@ -123,11 +123,11 @@ class AccountPage extends StatelessWidget {
                                         iconSize: Dimensions.iconSize24 + 1,
                                         size: Dimensions.height45 + 5,
                                       ),
-                                      bigText: BigText(text: "Messages"),
+                                      bigText: const BigText(text: "Messages"),
                                     ),
                                     SizedBox(height: Dimensions.height20),
                                     //logout
-                                    GestureDetector(
+                                    InkWell(
                                       onTap: () {
                                         if (Get.find<AuthController>()
                                             .userLoggedIn()) {
@@ -148,7 +148,7 @@ class AccountPage extends StatelessWidget {
                                           iconSize: Dimensions.iconSize24 + 1,
                                           size: Dimensions.height45 + 5,
                                         ),
-                                        bigText: BigText(text: "Logout"),
+                                        bigText: const BigText(text: "Logout"),
                                       ),
                                     ),
                                     SizedBox(height: Dimensions.height20),
@@ -159,54 +159,52 @@ class AccountPage extends StatelessWidget {
                           ],
                         ),
                       )
-                    : CustomLoader())
-                : Container(
-                    child: Center(
-                        child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
+                    : const CustomLoader())
+                : Center(
+                    child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        width: double.maxFinite,
+                        height: Dimensions.height20 * 8,
+                        margin: EdgeInsets.only(
+                            left: Dimensions.width20,
+                            right: Dimensions.width20),
+                        decoration: BoxDecoration(
+                            borderRadius:
+                                BorderRadius.circular(Dimensions.radius20),
+                            image: const DecorationImage(
+                              invertColors: false,
+                              fit: BoxFit.cover,
+                              image: AssetImage(
+                                  "assets/image/signintocontinue.png"),
+                            )),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Get.toNamed(RouteHelper.getSignInPage());
+                        },
+                        child: Container(
                           width: double.maxFinite,
-                          height: Dimensions.height20 * 8,
+                          height: Dimensions.height20 * 5,
                           margin: EdgeInsets.only(
                               left: Dimensions.width20,
                               right: Dimensions.width20),
                           decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.circular(Dimensions.radius20),
-                              image: DecorationImage(
-                                invertColors: false,
-                                fit: BoxFit.cover,
-                                image: AssetImage(
-                                    "assets/image/signintocontinue.png"),
-                              )),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            Get.toNamed(RouteHelper.getSignInPage());
-                          },
-                          child: Container(
-                            width: double.maxFinite,
-                            height: Dimensions.height20 * 5,
-                            margin: EdgeInsets.only(
-                                left: Dimensions.width20,
-                                right: Dimensions.width20),
-                            decoration: BoxDecoration(
-                              color: AppColors.mainColor,
-                              borderRadius:
-                                  BorderRadius.circular(Dimensions.radius20),
-                            ),
-                            child: Center(
-                                child: BigText(
-                              text: "Sign In",
-                              color: Colors.white,
-                              size: Dimensions.font20,
-                            )),
+                            color: AppColors.mainColor,
+                            borderRadius:
+                                BorderRadius.circular(Dimensions.radius20),
                           ),
+                          child: Center(
+                              child: BigText(
+                            text: "Sign In",
+                            color: Colors.white,
+                            size: Dimensions.font20,
+                          )),
                         ),
-                      ],
-                    )),
-                  );
+                      ),
+                    ],
+                  ));
           },
         ));
   }
